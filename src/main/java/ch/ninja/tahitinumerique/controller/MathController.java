@@ -3,14 +3,11 @@ package ch.ninja.tahitinumerique.controller;
 import ch.ninja.tahitinumerique.entities.SolutionEntity;
 import ch.ninja.tahitinumerique.service.MathService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/math")
@@ -33,8 +30,8 @@ public class MathController {
 
 	@ApiOperation(value = "Get all solutions.", notes = "Return all solutions stored in H2")
 	@GetMapping("/getAll")
-	public List<int[]> getAll() {
-		return service.getAll().stream().map(SolutionEntity::getSolutionValues).collect(Collectors.toList());
+	public List<SolutionEntity> getAll() {
+		return service.getAll();
 	}
 
 	@ApiOperation(value = "Delete all solutions.", notes = "Delete all solutions stored in H2")
